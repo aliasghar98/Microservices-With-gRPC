@@ -1,0 +1,21 @@
+Sample Running of Recommendation Service on Terminal:
+
+>>> from recommendations_pb2 import MovieCategory, RecommendationRequest
+>>> import grpc
+>>> from recommendations_pb2_grpc import RecommendationsStub
+>>> channel = grpc.insecure_channel("localhost:50051")
+>>> client = RecommendationsStub(channel)
+>>> request = RecommendationRequest(user_id=1, category=MovieCategory.Thriller,max_results=2)
+>>> client.Recommend(request)
+
+Output:
+recommendations {
+  id: 401
+  title: "Inception"
+  rating: 8.5
+}
+recommendations {
+  id: 402
+  title: "Se7en"
+  rating: 8.100000381469727
+}
